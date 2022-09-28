@@ -55,7 +55,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="Model\DAO\BaseDao.cs" />
+    <Compile Include="Model\DAO\FabriqueDao.cs" />
+    <Compile Include="Model\DAO\TypeProduitDao.cs" />
+    <Compile Include="Presenter\TypeProduitPresenter.cs" />
+    <Compile Include="Presenter\Utilitaire\UtilitaireMetier.cs" />
+    <Compile Include="Presenter\Utilitaire\ValidateurUtil.cs" />
+    <Compile Include="Vue\TypeProduitVue.xaml.cs">
+      <DependentUpon>TypeProduitVue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\Utilitaire\Popup.xaml.cs">
+      <DependentUpon>Popup.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Vue\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -63,13 +75,21 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="Vue\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Vue\TypeProduitVue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\Utilitaire\Popup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\ConnexionDB.cs" />
+    <Compile Include="Model\metier\TypeProduit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -95,9 +115,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-    <Folder Include="Vue\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
