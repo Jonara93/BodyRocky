@@ -58,6 +58,8 @@
     <Compile Include="Model\DAO\BaseDao.cs" />
     <Compile Include="Model\DAO\FabriqueDao.cs" />
     <Compile Include="Model\DAO\TypeProduitDao.cs" />
+    <Compile Include="Model\ExceptionUtil\ExceptionAccesBD.cs" />
+    <Compile Include="Presenter\ExceptionUtil\ExceptionMetier.cs" />
     <Compile Include="Presenter\TypeProduitPresenter.cs" />
     <Compile Include="Presenter\Utilitaire\UtilitaireMetier.cs" />
     <Compile Include="Presenter\Utilitaire\ValidateurUtil.cs" />

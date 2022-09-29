@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BodyRockyWPF.Presenter.ExceptionUtil;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace BodyRockyWPF.Presenter.Utilitaire
 {
-    class UtilitaireMetier
+    public static class UtilitaireMetier
     {
         public static String TransformeString(string stringToTransform)
         {
             string toReturn;
-            if (stringToTransform == null || stringToTransform.Length == 0)
+            if (string.IsNullOrWhiteSpace(stringToTransform))
             {
-                throw new Exception();
+                throw new ExceptionMetier("Le texte à transformer ne peut pas être null ou vide");
             }
             else
             {

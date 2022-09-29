@@ -1,5 +1,6 @@
 ﻿using BodyRockyWPF.Controller;
 using BodyRockyWPF.Model.model;
+using BodyRockyWPF.Presenter.ExceptionUtil;
 using BodyRockyWPF.Presenter.Utilitaire;
 using BodyRockyWPF.Vue.Utilitaire;
 using System;
@@ -36,15 +37,28 @@ namespace BodyRockyWPF.Vue
             Popup popupDialog = new Popup("Intitulé du TypeProduit","Ajout TypeProduit", null);
             if (popupDialog.ShowDialog() == true)
             {
-                TypeProduit tp = new TypeProduit(UtilitaireMetier.TransformeString(popupDialog.Answer));
-                if (ValidateurUtil.IsTypeCategorieValid(tp, new List<TypeProduit>(presenter.CollectionTypeProduit)))
+                try
                 {
-                    MessageBox.Show(presenter.AjouterTypeProduit(tp));
+                    TypeProduit tp = new TypeProduit(UtilitaireMetier.TransformeString(popupDialog.Answer));
+
+                    if (ValidateurUtil.IsTypeCategorieValidEtPasExistant(tp, new List<TypeProduit>(presenter.CollectionTypeProduit)))
+                    {
+                        MessageBox.Show(presenter.AjouterTypeProduit(tp));
+                    }
+                    else
+                    {
+                        MessageBox.Show("L'intitule n'est pas valide", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
                 }
-                else
+                catch (ExceptionMetier exc)
+                {
+                    MessageBox.Show(exc.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception)
                 {
                     MessageBox.Show("L'intitule n'est pas valide", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
+                
             }
         }
     }

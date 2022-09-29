@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodyRockyWPF", "BodyRockyWPF\BodyRockyWPF.csproj", "{003D13EE-BA56-431D-8A10-C36FB93D4119}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodyRockyWpfTestNUnit", "BodyRockyWpfTestNUnit\BodyRockyWpfTestNUnit.csproj", "{37C7F904-0F30-459A-845A-0EE15BA0206A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{003D13EE-BA56-431D-8A10-C36FB93D4119}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{003D13EE-BA56-431D-8A10-C36FB93D4119}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{003D13EE-BA56-431D-8A10-C36FB93D4119}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37C7F904-0F30-459A-845A-0EE15BA0206A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37C7F904-0F30-459A-845A-0EE15BA0206A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37C7F904-0F30-459A-845A-0EE15BA0206A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37C7F904-0F30-459A-845A-0EE15BA0206A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,9 +9,9 @@ namespace BodyRockyWPF.Presenter.Utilitaire
 {
     public static class ValidateurUtil
     {
-        public static bool IsTypeCategorieValid(TypeProduit tp, List<TypeProduit> listTp)
+        public static bool IsTypeCategorieValidEtPasExistant(TypeProduit tp, List<TypeProduit> listTp)
         {
-            return tp != null && tp.Intitule != null && tp.Intitule.Length >= 4 && !listTp.Contains(tp);
+            return tp != null && listTp != null && tp.Intitule != null && tp.Intitule.Length >= 4 && !listTp.Contains(tp);
         }
     }
 }

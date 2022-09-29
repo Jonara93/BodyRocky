@@ -42,13 +42,20 @@ namespace BodyRockyWPF.Vue
             }
             catch (Exception)
             {
-                MessageBox.Show("Une erreur est survenue durant l'ouverture de la fenêtre");
+                MessageBox.Show("Une erreur est survenue durant l'ouverture du composant \"TypeProduit\"");
             }
         }
 
         private void Liste_Produits(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                Main.Content = new TypeProduitVue();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Une erreur est survenue durant l'ouverture du composant \"Produit\"");
+            }
         }
     }
 }
