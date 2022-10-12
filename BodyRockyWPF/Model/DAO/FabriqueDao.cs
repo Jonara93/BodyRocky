@@ -42,5 +42,10 @@ namespace BodyRockyWPF.Model.DAO
             return new TypeProduitDao(SqlConnection);
         }
 
+        public ProduitDao GetProduitDao()
+        {
+            return new ProduitDao(SqlConnection);
+        }
+
     }
 }

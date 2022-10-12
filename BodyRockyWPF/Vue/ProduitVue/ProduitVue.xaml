@@ -1,0 +1,52 @@
+﻿<Page x:Class="BodyRockyWPF.Vue.ProduitVue"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BodyRockyWPF.Vue"
+      mc:Ignorable="d" 
+      d:DesignHeight="656" d:DesignWidth="1254"
+      Title="ProduitVue">
+
+    <Grid>
+        <DataGrid ItemsSource="{Binding CollectionProduit}"
+                  AutoGenerateColumns="False"
+                  Name="GrilleProduit"
+                  AlternatingRowBackground="#BA19D2"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  Height="597"
+                  Width="553"     
+                  SelectionChanged="GrilleCollectionProduit_SelectionChanged"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="10,49,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Intitule"                                    
+                                    Binding="{Binding Intitule, Mode=OneWay}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Description"                                    
+                                    Binding="{Binding Description, Mode=OneWay}"
+                                    Width="*" />
+                <DataGridTextColumn Header="Prix"                                    
+                                    Binding="{Binding Prix, Mode=OneWay}"
+                                    Width="0.5*" />
+                <DataGridTextColumn Header="Action" Width="0.5*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="AjouterTypeProduit" Style="{StaticResource BoutonOk}"
+                HorizontalAlignment="Left" Margin="10,3,0,0"
+                VerticalAlignment="Top" Width="75" Click="AjouterProduit_Click" Height="41">
+            <TextBlock Text="Ajouter" TextWrapping="Wrap" TextAlignment="Center" />
+        </Button>
+        <ComboBox Height="23"
+                  Name="TypeProduitSelection"
+                  Width="120"
+                  Margin="443,10,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  DisplayMemberPath="intitule"
+                  ItemsSource="{Binding DataViewTypeProduit}"
+                  SelectedItem="{Binding SelectionTypeProduit}"/>
+        <Frame x:Name="ProduitViewSec" Margin="568,0,10,10" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Page>

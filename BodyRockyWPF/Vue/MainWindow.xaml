@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BodyRockyWPF.Vue"
         mc:Ignorable="d"
-        Title="BodyRocky" Height="720" Width="1280" ResizeMode="NoResize">
+        Title="BodyRocky" Height="720" Width="1280"
+        MinHeight="720" MinWidth="1280">
     <Grid>
         <Menu HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="1254" Margin="10,10,0,0">
             <MenuItem Header="Type Produit"  Click="Liste_TypeProduits"/>

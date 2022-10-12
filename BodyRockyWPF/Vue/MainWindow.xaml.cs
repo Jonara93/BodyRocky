@@ -50,7 +50,7 @@ namespace BodyRockyWPF.Vue
         {
             try
             {
-                Main.Content = new TypeProduitVue();
+                Main.Content = new ProduitVue();
             }
             catch (Exception)
             {

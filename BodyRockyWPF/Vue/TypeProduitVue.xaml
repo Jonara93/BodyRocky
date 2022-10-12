@@ -12,12 +12,12 @@
                   AutoGenerateColumns="False"
                   Name="GrilleMembre"
                   AlternatingRowBackground="#BA19D2"
-                  HorizontalAlignment="Center"
                   VerticalAlignment="Top"
                   Height="597"
                   Width="641"       
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="10,49,603,0">
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="10,49,0,0"
+                  HorizontalAlignment="Left">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Intitule TypeProduit"                                    
                                     Binding="{Binding Intitule, Mode=OneWay}"
@@ -25,7 +25,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="AjouterTypeProduit" Style="{StaticResource BoutonOk}"
-                HorizontalAlignment="Left" Margin="10,3,0,0"
+                HorizontalAlignment="Left" Margin="10,3,10,0"
                 VerticalAlignment="Top" Width="75" Click="AjouterTypeProduit_Click" Height="41">
             <TextBlock Text="Ajouter" TextWrapping="Wrap" TextAlignment="Center" />
         </Button>
