@@ -21,6 +21,12 @@ namespace BodyRockyWPF.Model.model
             this.IdTypeProduit = idTypeProduit;
         }
 
+        public TypeProduit(TypeProduit tp)
+        {
+            this.IdTypeProduit = tp.IdTypeProduit;
+            this.Intitule = tp.Intitule;
+        }
+
         public override bool Equals(object obj)
         {
             return obj is TypeProduit produit &&

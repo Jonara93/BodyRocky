@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BodyRockyWPF.Model.ExceptionUtil;
 
 namespace BodyRockyWPF.Model.DAO
 {
@@ -51,6 +52,36 @@ namespace BodyRockyWPF.Model.DAO
             return typeProduits;
         }
 
+        public override TypeProduit Charger(int id)
+        {
+            TypeProduit typeProduit = null;
+
+            SqlCommand sqlCmd = new SqlCommand();
+            try
+            {
+                sqlCmd.CommandText = "GetTypeProduitParId";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+                sqlCmd.Connection = SqlConnection;
+
+                SqlDataReader reader = sqlCmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    typeProduit = new TypeProduit(
+                            Convert.ToInt32(reader["id_type_produit"]),
+                            Convert.ToString(reader["intitule"])
+                        );
+                }
+
+                reader.Close();
+            }
+            catch (Exception e)
+            {
+                throw new ExceptionAccesBD(e.Message);
+            }
+            return typeProduit;
+        }
+
         public override bool Ajouter(TypeProduit entite)
         {
             SqlCommand sqlCmd = new SqlCommand();
@@ -64,7 +95,7 @@ namespace BodyRockyWPF.Model.DAO
                 sqlCmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
                 sqlCmd.ExecuteNonQuery();
 
-                return Convert.ToInt32(sqlCmd.Parameters["@RetVal"].Value.ToString()) > 0 ? true : false;
+                return Convert.ToInt32(sqlCmd.Parameters["@RetVal"].Value.ToString()) > 0;
 
             }
             catch (Exception)

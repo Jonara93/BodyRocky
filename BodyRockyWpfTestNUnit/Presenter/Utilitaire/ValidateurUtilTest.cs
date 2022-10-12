@@ -20,7 +20,7 @@ namespace BodyRockyWpfTestNUnit.Presenter.Utilitaire
             TypeProduit tp = null;
             List<TypeProduit> listTp = new List<TypeProduit>(new[] { new TypeProduit("Karate"), new TypeProduit("Cyclisme") });
 
-            Assert.False(ValidateurUtil.IsTypeCategorieValidEtPasExistant(tp,listTp));
+            Assert.False(ValidateurUtil.IsTypeCategorieValidEtPasExistant(tp, listTp));
         }
 
         [Test]
@@ -70,6 +70,63 @@ namespace BodyRockyWpfTestNUnit.Presenter.Utilitaire
 
 
             Assert.True(ValidateurUtil.IsTypeCategorieValidEtPasExistant(tp, listTp));
+        }
+
+        [Test]
+        public void TestIsListNotNullAndNotEmpty_EmptyList()
+        {
+            List<TypeProduit> listTp = new List<TypeProduit>();
+
+
+            Assert.False(ValidateurUtil.IsListNotNullAndNotEmpty(listTp));
+        }
+
+        [Test]
+        public void TestIsListNotNullAndNotEmpty_FilledList()
+        {
+            TypeProduit tp = new TypeProduit("Judo");
+            List<TypeProduit> listTp = new List<TypeProduit>();
+            listTp.Add(tp);
+
+
+            Assert.True(ValidateurUtil.IsListNotNullAndNotEmpty(listTp));
+        }
+
+        [Test]
+        public void TestIsListNotNullAndNotEmpty_ListNull()
+        {
+            List<TypeProduit> listTp = null;
+
+
+            Assert.False(ValidateurUtil.IsListNotNullAndNotEmpty(listTp));
+        }
+
+        [Test]
+        public void TestIsListNullOrEmpty_EmptyList()
+        {
+            List<TypeProduit> listTp = new List<TypeProduit>();
+
+
+            Assert.True(ValidateurUtil.IsListNullOrEmpty(listTp));
+        }
+
+        [Test]
+        public void TestIsListNullOrEmpty_FilledList()
+        {
+            TypeProduit tp = new TypeProduit("Judo");
+            List<TypeProduit> listTp = new List<TypeProduit>();
+            listTp.Add(tp);
+
+            Assert.False(ValidateurUtil.IsListNullOrEmpty(listTp));
+        }
+
+        [Test]
+        public void TestIsListNullOrEmpty_ListNull()
+        {
+            List<TypeProduit> listTp = null;
+
+
+            Assert.True(ValidateurUtil.IsListNullOrEmpty(listTp));
         }
     }
 }

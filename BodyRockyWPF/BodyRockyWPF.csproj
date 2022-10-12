@@ -57,12 +57,22 @@
     </ApplicationDefinition>
     <Compile Include="Model\DAO\BaseDao.cs" />
     <Compile Include="Model\DAO\FabriqueDao.cs" />
+    <Compile Include="Model\DAO\ProduitDao.cs" />
     <Compile Include="Model\DAO\TypeProduitDao.cs" />
     <Compile Include="Model\ExceptionUtil\ExceptionAccesBD.cs" />
+    <Compile Include="Model\metier\Produit.cs" />
     <Compile Include="Presenter\ExceptionUtil\ExceptionMetier.cs" />
+    <Compile Include="Presenter\ProduitDetailPresenter.cs" />
+    <Compile Include="Presenter\ProduitPresenter.cs" />
     <Compile Include="Presenter\TypeProduitPresenter.cs" />
     <Compile Include="Presenter\Utilitaire\UtilitaireMetier.cs" />
     <Compile Include="Presenter\Utilitaire\ValidateurUtil.cs" />
+    <Compile Include="Vue\ProduitVue\ProduitDetailVue.xaml.cs">
+      <DependentUpon>ProduitDetailVue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\ProduitVue\ProduitVue.xaml.cs">
+      <DependentUpon>ProduitVue.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vue\TypeProduitVue.xaml.cs">
       <DependentUpon>TypeProduitVue.xaml</DependentUpon>
     </Compile>
@@ -81,6 +91,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Vue\ProduitVue\ProduitDetailVue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\ProduitVue\ProduitVue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vue\TypeProduitVue.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -13,5 +13,15 @@ namespace BodyRockyWPF.Presenter.Utilitaire
         {
             return tp != null && listTp != null && tp.Intitule != null && tp.Intitule.Length >= 4 && !listTp.Contains(tp);
         }
+
+        public static bool IsListNotNullAndNotEmpty<T>(List<T> list)
+        {
+            return list != null && list.Count > 0;
+        }
+
+        public static bool IsListNullOrEmpty<T>(List<T> list)
+        {
+            return list == null || list.Count == 0;
+        }
     }
 }
