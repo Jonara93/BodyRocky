@@ -31,22 +31,54 @@ namespace BodyRockyWPF.Vue
 
         private void AjouterProduit_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                ProduitPresenter presenter = (ProduitPresenter)this.DataContext;
+                ProduitViewSec.Content = new ProduitDetailVue(null, false, presenter.ListeProduit, (ProduitPresenter)this.DataContext);
+            }
+            catch (Exception m)
+            {
 
+                throw new ExceptionMetier(m.Message); ;
+            }
         }
 
         private void GrilleCollectionProduit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
+                ProduitPresenter presenter = (ProduitPresenter)this.DataContext;
                 if (e.AddedItems != null && e.AddedItems.Count >= 1)
                 {
-                    ProduitViewSec.Content = new ProduitDetailVue(e.AddedItems[0] as Produit);
+                    presenter.Produit = e.AddedItems[0] as Produit;
+                    ProduitViewSec.Content = new ProduitDetailVue(e.AddedItems[0] as Produit, true, presenter.ListeProduit, (ProduitPresenter)this.DataContext);
                 }
             }
             catch (Exception m)
             {
 
                 throw new ExceptionMetier(m.Message);
+            }
+        }
+
+        private void ModifierProduit_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ProduitPresenter presenter = (ProduitPresenter)this.DataContext;
+                if (presenter.Produit != null)
+                {
+                    ProduitViewSec.Content = new ProduitDetailVue(presenter.Produit, false, presenter.ListeProduit, (ProduitPresenter)this.DataContext);
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez choisir un produit", "Erreur Metier", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (Exception m)
+            {
+
+                throw new ExceptionMetier(m.Message); ;
             }
         }
     }

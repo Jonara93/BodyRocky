@@ -1,5 +1,7 @@
-﻿using BodyRockyWPF.Model.metier;
+﻿using BodyRockyWPF.Model.ExceptionUtil;
+using BodyRockyWPF.Model.metier;
 using BodyRockyWPF.Presenter;
+using BodyRockyWPF.Presenter.ExceptionUtil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,15 +24,47 @@ namespace BodyRockyWPF.Vue
     /// </summary>
     public partial class ProduitDetailVue : Page
     {
-        public ProduitDetailVue(Produit produit)
+        ProduitPresenter produitPresenter;
+        public ProduitDetailVue(Produit produit, Boolean isViewMode, List<Produit> listProduitExistant, ProduitPresenter produitPresenterEnvoye)
         {
             InitializeComponent();
-            this.DataContext = new ProduitDetailPresenter(produit, true);
+            this.DataContext = new ProduitDetailPresenter(produit, isViewMode, listProduitExistant);
+            produitPresenter = produitPresenterEnvoye;
         }
 
         private void FermerFenetre_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(null);
+        }
+
+        private void AjouterModifierProduit_Click(object sender, RoutedEventArgs e)
+        {
+            ProduitDetailPresenter presenter = (ProduitDetailPresenter)this.DataContext;
+            try
+            {
+                if (presenter.AjouterOuModifierProduit())
+                {
+                    produitPresenter.ReloadCollectionProduit();
+                    MessageBox.Show("Everything is alright", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                    NavigationService.Navigate(null);
+                }
+                else
+                {
+                    MessageBox.Show("Une erreur est survenue", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (ExceptionMetier m)
+            {
+                MessageBox.Show(m.Message,"Erreur Metier", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (ExceptionAccesBD m)
+            {
+                MessageBox.Show(m.Message, "Erreur DB", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception m)
+            {
+                MessageBox.Show(m.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

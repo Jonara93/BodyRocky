@@ -13,10 +13,10 @@ using System.Threading.Tasks;
 
 namespace BodyRockyWPF.Presenter
 {
-    class ProduitPresenter : INotifyPropertyChanged
+    public class ProduitPresenter : INotifyPropertyChanged
     {
         ObservableCollection<Produit> collectionProduit;
-        List<Produit> ListeProduit { get; set; }
+        public List<Produit> ListeProduit { get; set; }
 
         DataView dataViewTypeProduit;
         DataRowView dataRowViewTypeProduit;
@@ -76,7 +76,7 @@ namespace BodyRockyWPF.Presenter
             }
         }
 
-        private void ReloadCollectionProduit()
+        public void ReloadCollectionProduit()
         {
             List<Produit> listBDProduit = FabriqueDao.GetInstance().GetProduitDao().ListerTous();
 

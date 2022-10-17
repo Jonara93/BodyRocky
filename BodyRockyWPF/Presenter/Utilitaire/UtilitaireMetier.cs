@@ -1,4 +1,5 @@
-﻿using BodyRockyWPF.Presenter.ExceptionUtil;
+﻿using BodyRockyWPF.Model.metier;
+using BodyRockyWPF.Presenter.ExceptionUtil;
 using System;
 using System.Collections.Generic;
 using System.Linq;

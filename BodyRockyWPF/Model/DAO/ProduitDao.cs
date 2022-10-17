@@ -57,5 +57,72 @@ namespace BodyRockyWPF.Model.DAO
             }
             return listeProduit;
         }
+
+        public override bool Ajouter(Produit entite)
+        {
+            SqlCommand sqlCmd = new SqlCommand();
+            try
+            {
+                sqlCmd.CommandText = "AjouterProduit";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+                sqlCmd.Connection = SqlConnection;
+
+                sqlCmd.Parameters.Add("@Intitule", SqlDbType.VarChar).Value = entite.Intitule;
+                sqlCmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = entite.Description;
+                if (entite.Photo == null)
+                {
+                    sqlCmd.Parameters.Add("@photo", SqlDbType.VarBinary).Value = DBNull.Value;
+                }
+                else
+                {
+                    sqlCmd.Parameters.Add("@photo", SqlDbType.VarBinary).Value = entite.Photo;
+                }
+                sqlCmd.Parameters.Add("@Prix", SqlDbType.Decimal).Value = entite.Prix;
+                sqlCmd.Parameters.Add("@Actif", SqlDbType.Bit).Value = entite.Actif;
+                sqlCmd.Parameters.Add("@id_type_produit", SqlDbType.Int).Value = entite.TypeProduit.IdTypeProduit;
+                sqlCmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                sqlCmd.ExecuteNonQuery();
+
+                return Convert.ToInt32(sqlCmd.Parameters["@RetVal"].Value.ToString()) > 0;
+            }
+            catch (Exception e)
+            {
+
+                throw new ExceptionAccesBD(e.Message);
+            }
+        }
+
+        public override bool Modifier(Produit entite)
+        {
+            SqlCommand sqlCmd = new SqlCommand();
+            try
+            {
+                sqlCmd.CommandText = "ModifierProduit";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+                sqlCmd.Connection = SqlConnection;
+
+                sqlCmd.Parameters.Add("@id_produit", SqlDbType.Int).Value = entite.IdProduit;
+                sqlCmd.Parameters.Add("@Intitule", SqlDbType.VarChar).Value = entite.Intitule;
+                sqlCmd.Parameters.Add("@Description", SqlDbType.VarChar).Value = entite.Description;
+                if (entite.Photo == null)
+                {
+                    sqlCmd.Parameters.Add("@photo", SqlDbType.VarBinary).Value = DBNull.Value;
+                }
+                else
+                {
+                    sqlCmd.Parameters.Add("@photo", SqlDbType.VarBinary).Value = entite.Photo;
+                }
+                sqlCmd.Parameters.Add("@Prix", SqlDbType.Decimal).Value = entite.Prix;
+                sqlCmd.Parameters.Add("@id_type_produit", SqlDbType.Int).Value = entite.TypeProduit.IdTypeProduit;
+                sqlCmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                sqlCmd.ExecuteNonQuery();
+
+                return Convert.ToInt32(sqlCmd.Parameters["@RetVal"].Value.ToString()) > 0;
+            }
+            catch (Exception e)
+            {
+                throw new ExceptionAccesBD(e.Message);
+            }
+        }
     }
 }

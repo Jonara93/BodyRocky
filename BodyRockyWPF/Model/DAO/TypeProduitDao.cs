@@ -43,10 +43,9 @@ namespace BodyRockyWPF.Model.DAO
 
                 reader.Close();
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //TODO gestion des exceptions à faire
-                throw;
+                throw new ExceptionAccesBD(e.Message);
             }
 
             return typeProduits;
@@ -98,9 +97,9 @@ namespace BodyRockyWPF.Model.DAO
                 return Convert.ToInt32(sqlCmd.Parameters["@RetVal"].Value.ToString()) > 0;
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                throw;
+                throw new ExceptionAccesBD(e.Message);
             }
         }
     }

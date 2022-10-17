@@ -23,14 +23,15 @@ namespace BodyRockyWpfTestNUnit.Presenter
         {
             Produit produit = buildProduit("Vélo", 10, "Cyclisme");
 
-            Produit produitAInjected = null;
+            Produit produitAInjecter = null;
 
             pdp.Produit = produit;
 
-            pdp.InjectionDonneeProduit(produitAInjected);
+            pdp.InjectionDonneeProduit(produitAInjecter);
 
             Assert.AreEqual(null, pdp.Produit.Intitule);
             Assert.AreEqual(null, pdp.Produit.TypeProduit.Intitule);
+            Assert.AreEqual(0, pdp.Produit.Prix);
         }
 
         [Test]
@@ -38,11 +39,11 @@ namespace BodyRockyWpfTestNUnit.Presenter
         {
             Produit produit = buildProduit("Vélo", 10, "Cyclisme");
 
-            Produit produitAInjected = buildProduit("Kimono", 20, "Karaté");
+            Produit produitAInjecter = buildProduit("Kimono", 20, "Karaté");
 
             pdp.Produit = produit;
 
-            pdp.InjectionDonneeProduit(produitAInjected);
+            pdp.InjectionDonneeProduit(produitAInjecter);
 
             Assert.AreEqual("Kimono", pdp.Produit.Intitule);
             Assert.AreEqual(20, pdp.Produit.Prix);

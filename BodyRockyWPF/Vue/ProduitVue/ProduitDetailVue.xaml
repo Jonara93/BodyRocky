@@ -15,33 +15,60 @@
                   VerticalAlignment="Top" Height="40" Width="302">
                 <TextBlock Margin="10,10,209,10" Text="Intitule :"/>
                 <TextBlock Margin="98,10,10,10" Text="{Binding Intitule,Mode=OneWay}" Visibility="{Binding ViewMode}"/>
-                <TextBox Margin="98,10,10,10" Text="{Binding Intitule, Mode=OneWay}" Visibility="{Binding EditMode}"/>
+                <TextBox Margin="98,10,10,10" Visibility="{Binding EditMode}">
+                    <TextBox.Text>
+                        <Binding Path="Intitule" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
             </Grid>
             <Grid Margin="0,70,0,0"
                   HorizontalAlignment="Left"
                   VerticalAlignment="Top" Height="96" Width="302">
                 <TextBlock Margin="10,10,209,10" Text="Description :"/>
                 <TextBlock Margin="98,10,10,10" Text="{Binding Description,Mode=OneWay}" Visibility="{Binding ViewMode}"/>
-                <TextBox Margin="98,10,10,10" Text="{Binding Description, Mode=OneWay}" Visibility="{Binding EditMode}"/>
+                <TextBox Margin="98,10,10,10" Visibility="{Binding EditMode}">
+                    <TextBox.Text>
+                        <Binding Path="Description" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
             </Grid>
             <Grid Margin="0,166,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" Height="40" Width="302">
                 <TextBlock Margin="10,10,209,10" Text="Prix :"/>
                 <TextBlock Margin="98,10,10,10" Text="{Binding Prix, Mode=OneWay}" Visibility="{Binding ViewMode}"/>
-                <TextBox Margin="98,10,10,10" Text="{Binding Prix, Mode=OneWay}" Visibility="{Binding EditMode}"/>
+                <TextBox Margin="98,10,10,10" Visibility="{Binding EditMode}">
+                    <TextBox.Text>
+                        <Binding Path="Prix" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
             </Grid>
             <Grid Margin="0,211,0,0"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top" Height="40" Width="302">
                 <TextBlock Margin="10,10,209,10" Text="Type Produit :"/>
                 <TextBlock Margin="98,10,10,10" Text="{Binding IntituleTypeProduit, Mode=OneWay}" Visibility="{Binding ViewMode}"/>
-                <TextBox Margin="98,10,10,10" Text="{Binding IntituleTypeProduit, Mode=OneWay}" Visibility="{Binding EditMode}"/>
+                <ComboBox Height="23"
+                  Name="TypeProduitSelection"
+                  Width="120"
+                  Margin="172,7,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  DisplayMemberPath="intitule"                          
+                  ItemsSource="{Binding DataViewTypeProduit}"
+                  SelectedItem="{Binding SelectionTypeProduit}"
+                  Visibility="{Binding EditMode}"/>
             </Grid>
             <Button x:Name="FermerFenetre" Style="{StaticResource BoutonAnnuler}"
                 HorizontalAlignment="Right" Margin="0,0,10,10"
                 VerticalAlignment="Bottom" Width="75" Click="FermerFenetre_Click" Height="41">
                 <TextBlock Text="Fermer" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+            <Button x:Name="AjouterModifierProduit" Style="{StaticResource BoutonOk}"
+                Visibility="{Binding EditMode}"
+                HorizontalAlignment="Right" Margin="0,0,90,10"
+                VerticalAlignment="Bottom" Width="75" Click="AjouterModifierProduit_Click" Height="41">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="{Binding TitreBoutonAjoutModif}"/>
             </Button>
         </Grid>
     </Border>
