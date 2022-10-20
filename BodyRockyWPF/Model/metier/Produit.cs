@@ -16,6 +16,7 @@ namespace BodyRockyWPF.Model.metier
         public byte[] Photo { get; set; }
         public Decimal Prix { get; set; }
         public bool Actif { get; set; }
+        public Int32 Quantite { get; set; }
         public TypeProduit TypeProduit { get; set; }
 
         public Produit() { }
@@ -24,16 +25,17 @@ namespace BodyRockyWPF.Model.metier
         {
             this.Intitule = intitule;
         }
-        public Produit(String intitule, String description, byte[] photo, Decimal prix, bool actif, TypeProduit TypeProduit):this(intitule)
+        public Produit(String intitule, String description, byte[] photo, Decimal prix, bool actif, TypeProduit TypeProduit, int quantite) : this(intitule)
         {
             this.Description = description;
             this.Photo = photo;
             this.Prix = prix;
             this.Actif = actif;
             this.TypeProduit = TypeProduit;
+            this.Quantite = quantite;
         }
-        public Produit(Int32 IdProduit, String intitule, String description, byte[] photo, Decimal prix, bool actif, TypeProduit TypeProduit)
-            : this(intitule, description, photo, prix, actif, TypeProduit)
+        public Produit(Int32 IdProduit, String intitule, String description, byte[] photo, Decimal prix, bool actif, TypeProduit TypeProduit, int quantite)
+            : this(intitule, description, photo, prix, actif, TypeProduit, quantite)
         {
             this.IdProduit = IdProduit;
         }
@@ -44,6 +46,7 @@ namespace BodyRockyWPF.Model.metier
             this.Photo = produit.Photo;
             this.Prix = produit.Prix;
             this.Actif = produit.Actif;
+            this.Quantite = produit.Quantite;
             this.TypeProduit = new TypeProduit(produit.TypeProduit);
         }
 

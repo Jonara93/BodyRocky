@@ -55,7 +55,37 @@ namespace BodyRockyWPF.Vue
             }
             catch (ExceptionMetier m)
             {
-                MessageBox.Show(m.Message,"Erreur Metier", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(m.Message, "Erreur Metier", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (ExceptionAccesBD m)
+            {
+                MessageBox.Show(m.Message, "Erreur DB", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception m)
+            {
+                MessageBox.Show(m.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void SuppressionReactivationProduit_Click(object sender, RoutedEventArgs e)
+        {
+            ProduitDetailPresenter presenter = (ProduitDetailPresenter)this.DataContext;
+            try
+            {
+                if (presenter.SupprimerReactiverProduit())
+                {
+                    produitPresenter.ReloadCollectionProduit();
+                    MessageBox.Show("Action effectué", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
+                    NavigationService.Navigate(null);
+                }
+                else
+                {
+                    MessageBox.Show("Une erreur est survenue", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            catch (ExceptionMetier m)
+            {
+                MessageBox.Show(m.Message, "Erreur Metier", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             catch (ExceptionAccesBD m)
             {

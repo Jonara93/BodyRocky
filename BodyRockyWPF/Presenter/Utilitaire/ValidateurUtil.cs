@@ -17,10 +17,11 @@ namespace BodyRockyWPF.Presenter.Utilitaire
 
         public static bool IsProduitValide(Produit produit)
         {
-            return produit != null && produit.Intitule != null && produit.Intitule.Length >= 3 
+            return produit != null && produit.Intitule != null && produit.Intitule.Length >= 3
                 && produit.Prix >= 0
                 && produit.Description != null && produit.Description.Length >= 10
-                && produit.TypeProduit != null;
+                && produit.TypeProduit != null
+                && produit.Quantite >= 0;
         }
 
         public static bool IsProduitIntituleUnique(List<Produit> listProduit, Produit produit)

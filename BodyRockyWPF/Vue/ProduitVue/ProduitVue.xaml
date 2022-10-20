@@ -30,7 +30,9 @@
                 <DataGridTextColumn Header="Prix"                                    
                                     Binding="{Binding Prix, Mode=OneWay}"
                                     Width="0.5*" />
-                <DataGridTextColumn Header="Action" Width="0.5*" />
+                <DataGridTextColumn Header="Quantité"
+                                    Binding="{Binding Quantite, Mode=OneWay}"
+                                    Width="0.5*" />
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="AjouterTypeProduit" Style="{StaticResource BoutonOk}"

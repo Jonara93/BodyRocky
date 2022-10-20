@@ -19,8 +19,10 @@ namespace BodyRockyWPF.Presenter
         public Produit Produit { get; set; }
         public String ViewMode { get; set; }
         public String EditMode { get; set; }
+        public String SuppresionReactivationMode { get; set; }
         public String TitrePage { get; set; }
         public String TitreBoutonAjoutModif { get; set; }
+        public String TitreBoutonSuppresionReactivation { get; set; }
         DataView dataViewTypeProduit;
         DataRowView dataRowViewTypeProduit;
         List<TypeProduit> listTypeProduit;
@@ -35,7 +37,11 @@ namespace BodyRockyWPF.Presenter
             EditMode = isViewMode ? "Hidden" : "Visible";
             if (isViewMode)
             {
-                TitrePage = "Détails du Produit : " + produit.Intitule;
+                if (produit != null)
+                {
+                    TitrePage = "Détails du Produit : " + produit.Intitule;
+                }
+
             }
             else if (produit == null)
             {
@@ -45,10 +51,21 @@ namespace BodyRockyWPF.Presenter
             {
                 TitrePage = "Modification du Produit : " + produit.Intitule;
             }
+
             if (!isViewMode)
             {
                 TitreBoutonAjoutModif = produit == null ? "Ajouter" : "Valider";
                 InitDataViewTypeProduit();
+            }
+
+            if (produit != null && produit.IdProduit > 0)
+            {
+                TitreBoutonSuppresionReactivation = produit.Actif ? "Supprimer" : "Réactiver";
+                SuppresionReactivationMode = "Visible";
+            }
+            else
+            {
+                SuppresionReactivationMode = "Hidden";
             }
         }
         protected virtual void OnPropertyChanged(string propertyName)
@@ -118,6 +135,16 @@ namespace BodyRockyWPF.Presenter
             }
         }
 
+        public int Quantite
+        {
+            get { return this.Produit.Quantite; }
+            set
+            {
+                this.Produit.Quantite = value;
+                OnPropertyChanged("Quantite");
+            }
+        }
+
         public String IntituleTypeProduit
         {
             get { return this.Produit.TypeProduit.Intitule; }
@@ -139,6 +166,7 @@ namespace BodyRockyWPF.Presenter
                 Produit.Description = produit.Description;
                 Produit.Prix = produit.Prix;
                 Produit.Actif = produit.Actif;
+                Produit.Quantite = produit.Quantite;
                 if (produit.TypeProduit != null)
                 {
                     Produit.TypeProduit.IdTypeProduit = produit.TypeProduit.IdTypeProduit;
@@ -188,6 +216,10 @@ namespace BodyRockyWPF.Presenter
             return Produit.IdProduit.Equals(0) ? FabriqueDao.GetInstance().GetProduitDao().Ajouter(Produit) :
                 FabriqueDao.GetInstance().GetProduitDao().Modifier(Produit);
         }
+        public bool SupprimerReactiverProduit()
+        {
+            return FabriqueDao.GetInstance().GetProduitDao().SupprimerReactiver(Produit);
+        }
 
         private void MettreAJourTypeProduit(DataRowView value)
         {
@@ -208,5 +240,7 @@ namespace BodyRockyWPF.Presenter
                 throw new ExceptionMetier("La liste des typeProduits est vide");
             }
         }
+
+
     }
 }

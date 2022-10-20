@@ -43,7 +43,8 @@ namespace BodyRockyWPF.Model.DAO
                                 new byte[10],//photo
                                 Convert.ToDecimal(reader["prix"]),
                                 Convert.ToBoolean(reader["actif"]),
-                                new TypeProduit(Convert.ToInt32(reader["id_type_produit"]), Convert.ToString(reader["tp_intitule"]))
+                                new TypeProduit(Convert.ToInt32(reader["id_type_produit"]), Convert.ToString(reader["tp_intitule"])),
+                                Convert.ToInt32(reader["quantite"])
                             )
                         );
                     } while (reader.Read());
@@ -79,6 +80,7 @@ namespace BodyRockyWPF.Model.DAO
                 }
                 sqlCmd.Parameters.Add("@Prix", SqlDbType.Decimal).Value = entite.Prix;
                 sqlCmd.Parameters.Add("@Actif", SqlDbType.Bit).Value = entite.Actif;
+                sqlCmd.Parameters.Add("@Quantite", SqlDbType.Int).Value = entite.Quantite;
                 sqlCmd.Parameters.Add("@id_type_produit", SqlDbType.Int).Value = entite.TypeProduit.IdTypeProduit;
                 sqlCmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
                 sqlCmd.ExecuteNonQuery();
@@ -113,7 +115,30 @@ namespace BodyRockyWPF.Model.DAO
                     sqlCmd.Parameters.Add("@photo", SqlDbType.VarBinary).Value = entite.Photo;
                 }
                 sqlCmd.Parameters.Add("@Prix", SqlDbType.Decimal).Value = entite.Prix;
+                sqlCmd.Parameters.Add("@Quantite", SqlDbType.Int).Value = entite.Quantite;
                 sqlCmd.Parameters.Add("@id_type_produit", SqlDbType.Int).Value = entite.TypeProduit.IdTypeProduit;
+                sqlCmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
+                sqlCmd.ExecuteNonQuery();
+
+                return Convert.ToInt32(sqlCmd.Parameters["@RetVal"].Value.ToString()) > 0;
+            }
+            catch (Exception e)
+            {
+                throw new ExceptionAccesBD(e.Message);
+            }
+        }
+
+        public bool SupprimerReactiver(Produit entite)
+        {
+            SqlCommand sqlCmd = new SqlCommand();
+            try
+            {
+                sqlCmd.CommandText = "SupprimerReactiverProduit";
+                sqlCmd.CommandType = CommandType.StoredProcedure;
+                sqlCmd.Connection = SqlConnection;
+
+                sqlCmd.Parameters.Add("@id_produit", SqlDbType.Int).Value = entite.IdProduit;
+                sqlCmd.Parameters.Add("@actif", SqlDbType.Bit).Value = !entite.Actif;
                 sqlCmd.Parameters.Add("@RetVal", SqlDbType.Int).Direction = ParameterDirection.Output;
                 sqlCmd.ExecuteNonQuery();
 

@@ -48,10 +48,13 @@ namespace BodyRockyWPF.Vue
             try
             {
                 ProduitPresenter presenter = (ProduitPresenter)this.DataContext;
-                if (e.AddedItems != null && e.AddedItems.Count >= 1)
+                if (e.AddedItems != null && e.AddedItems.Count >= 1 && e.AddedItems[0] is Produit)
                 {
                     presenter.Produit = e.AddedItems[0] as Produit;
                     ProduitViewSec.Content = new ProduitDetailVue(e.AddedItems[0] as Produit, true, presenter.ListeProduit, (ProduitPresenter)this.DataContext);
+                }else
+                {
+                    ProduitViewSec.Content = null;
                 }
             }
             catch (Exception m)
@@ -66,13 +69,15 @@ namespace BodyRockyWPF.Vue
             try
             {
                 ProduitPresenter presenter = (ProduitPresenter)this.DataContext;
-                if (presenter.Produit != null)
+                if (presenter.Produit != null && presenter.Produit.Actif)
                 {
                     ProduitViewSec.Content = new ProduitDetailVue(presenter.Produit, false, presenter.ListeProduit, (ProduitPresenter)this.DataContext);
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez choisir un produit", "Erreur Metier", MessageBoxButton.OK, MessageBoxImage.Error);
+                    string message;
+                    message = presenter.Produit == null ? "Veuillez choisir un produit" : "Le produit est inactif";
+                    MessageBox.Show(message, "Erreur Metier", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception m)

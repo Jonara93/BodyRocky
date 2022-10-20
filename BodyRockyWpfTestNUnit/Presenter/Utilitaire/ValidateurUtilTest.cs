@@ -159,7 +159,7 @@ namespace BodyRockyWpfTestNUnit.Presenter.Utilitaire
         [Test]
         public void TestIsProduitValide_ProduitIntituleNull()
         {
-            Produit produit = new Produit(null,"Une grande description",null,15,true,new TypeProduit("Intitule"));
+            Produit produit = new Produit(null,"Une grande description",null,15,true,new TypeProduit("Intitule"),0);
 
             Assert.False(ValidateurUtil.IsProduitValide(produit));
         }
@@ -167,7 +167,7 @@ namespace BodyRockyWpfTestNUnit.Presenter.Utilitaire
         [Test]
         public void TestIsProduitValide_ProduitIntituleLT3()
         {
-            Produit produit = new Produit("Je", "Une grande description", null, 15, true, new TypeProduit("Intitule"));
+            Produit produit = new Produit("Je", "Une grande description", null, 15, true, new TypeProduit("Intitule"),0);
 
             Assert.False(ValidateurUtil.IsProduitValide(produit));
         }
@@ -175,14 +175,14 @@ namespace BodyRockyWpfTestNUnit.Presenter.Utilitaire
         [Test]
         public void TestIsProduitValide_ProduitPrixLT0()
         {
-            Produit produit = new Produit("JeuDeMain", "Une grande description", null, -1, true, new TypeProduit("Intitule"));
+            Produit produit = new Produit("JeuDeMain", "Une grande description", null, -1, true, new TypeProduit("Intitule"),0);
 
             Assert.False(ValidateurUtil.IsProduitValide(produit));
         }
         [Test]
         public void TestIsProduitValide_ProduitDescriptionNull()
         {
-            Produit produit = new Produit("JeuDeMain", null, null, 1, true, new TypeProduit("Intitule"));
+            Produit produit = new Produit("JeuDeMain", null, null, 1, true, new TypeProduit("Intitule"),0);
 
             Assert.False(ValidateurUtil.IsProduitValide(produit));
         }
@@ -190,7 +190,7 @@ namespace BodyRockyWpfTestNUnit.Presenter.Utilitaire
         [Test]
         public void TestIsProduitValide_ProduitDescriptionLT10()
         {
-            Produit produit = new Produit("JeuDeMain", "Jeu", null, 1, true, new TypeProduit("Intitule"));
+            Produit produit = new Produit("JeuDeMain", "Jeu", null, 1, true, new TypeProduit("Intitule"),0);
 
             Assert.False(ValidateurUtil.IsProduitValide(produit));
         }
@@ -198,15 +198,23 @@ namespace BodyRockyWpfTestNUnit.Presenter.Utilitaire
         [Test]
         public void TestIsProduitValide_TypeProduitNull()
         {
-            Produit produit = new Produit("JeuDeMain", "Jeu avec lequel on utilise ses petites mains", null, 1, true, null);
+            Produit produit = new Produit("JeuDeMain", "Jeu avec lequel on utilise ses petites mains", null, 1, true, null,0);
 
             Assert.False(ValidateurUtil.IsProduitValide(produit));
         }
-        
+
+        [Test]
+        public void TestIsProduitValide_QuantiteNegative()
+        {
+            Produit produit = new Produit("JeuDeMain", "Jeu avec lequel on utilise ses petites mains", null, 1, true, new TypeProduit("Intitule"), -15);
+
+            Assert.False(ValidateurUtil.IsProduitValide(produit));
+        }
+
         [Test]
         public void TestIsProduitValide_ProduitValid()
         {
-            Produit produit = new Produit("JeuDeMain", "Jeu avec lequel on utilise ses petites mains", null, 1, true, new TypeProduit("Intitule"));
+            Produit produit = new Produit("JeuDeMain", "Jeu avec lequel on utilise ses petites mains", null, 1, true, new TypeProduit("Intitule"),0);
 
             Assert.True(ValidateurUtil.IsProduitValide(produit));
         }
