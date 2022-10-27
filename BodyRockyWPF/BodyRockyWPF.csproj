@@ -55,18 +55,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\DAO\AdresseDao.cs" />
     <Compile Include="Model\DAO\BaseDao.cs" />
+    <Compile Include="Model\DAO\CommandeDAO.cs" />
     <Compile Include="Model\DAO\FabriqueDao.cs" />
     <Compile Include="Model\DAO\ProduitDao.cs" />
+    <Compile Include="Model\DAO\StatutCmdDao.cs" />
     <Compile Include="Model\DAO\TypeProduitDao.cs" />
     <Compile Include="Model\ExceptionUtil\ExceptionAccesBD.cs" />
+    <Compile Include="Model\metier\Adresse.cs" />
+    <Compile Include="Model\metier\Commande.cs" />
     <Compile Include="Model\metier\Produit.cs" />
+    <Compile Include="Model\metier\Statut_Cmd.cs" />
+    <Compile Include="Model\metier\Utilisateur.cs" />
+    <Compile Include="Presenter\CommandeDetailPresenter.cs" />
+    <Compile Include="Presenter\CommandePresenter.cs" />
     <Compile Include="Presenter\ExceptionUtil\ExceptionMetier.cs" />
     <Compile Include="Presenter\ProduitDetailPresenter.cs" />
     <Compile Include="Presenter\ProduitPresenter.cs" />
     <Compile Include="Presenter\TypeProduitPresenter.cs" />
     <Compile Include="Presenter\Utilitaire\UtilitaireMetier.cs" />
     <Compile Include="Presenter\Utilitaire\ValidateurUtil.cs" />
+    <Compile Include="Vue\CommandVue\CommandeDetailVue.xaml.cs">
+      <DependentUpon>CommandeDetailVue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\CommandVue\CommandeVue.xaml.cs">
+      <DependentUpon>CommandeVue.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vue\ProduitVue\ProduitDetailVue.xaml.cs">
       <DependentUpon>ProduitDetailVue.xaml</DependentUpon>
     </Compile>
@@ -79,6 +94,14 @@
     <Compile Include="Vue\Utilitaire\Popup.xaml.cs">
       <DependentUpon>Popup.xaml</DependentUpon>
     </Compile>
+    <Page Include="Vue\CommandVue\CommandeDetailVue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\CommandVue\CommandeVue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vue\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

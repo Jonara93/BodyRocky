@@ -1,0 +1,206 @@
+﻿<Page x:Class="BodyRockyWPF.Vue.CommandVue.CommandeDetailVue"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BodyRockyWPF.Vue.CommandVue"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="CommandeDetailVue">
+    <Border BorderBrush="Yellow" BorderThickness="2">
+        <Grid Margin="1,0,-1,0">
+            <TextBlock Margin="10,5,10,421" TextAlignment="Center" Text="{Binding TitrePage}"/>
+            <Grid Margin="0,25,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Height="40" Width="302">
+                <TextBlock Margin="10,10,40,10" Text="Adresse Livraison"/>
+            </Grid>
+            <Grid Margin="0,65,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Height="40" Width="302">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="133*"/>
+                    <ColumnDefinition Width="169*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10,10,40,10" Text="Rue :"/>
+                <TextBlock Margin="98,10,10,10" Text="{Binding RueLiv,Mode=OneWay}" Visibility="{Binding ViewMode}" Grid.ColumnSpan="2"/>
+                <TextBox Margin="98,10,10,10" Visibility="{Binding EditMode}" Grid.ColumnSpan="2">
+                    <TextBox.Text>
+                        <Binding Path="RueLiv" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+            </Grid>
+            <Grid Margin="0,105,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Height="40" Width="302">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="133*"/>
+                    <ColumnDefinition Width="169*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10,10,40,10" Text="Numéro :"/>
+                <TextBlock Margin="98,10,10,10" Text="{Binding NumeroLiv,Mode=OneWay}" Visibility="{Binding ViewMode}" Grid.ColumnSpan="2"/>
+                <TextBox Margin="98,10,10,10" Visibility="{Binding EditMode}" Grid.ColumnSpan="2">
+                    <TextBox.Text>
+                        <Binding Path="NumeroLiv" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+            </Grid>
+            <Grid Margin="0,145,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Height="40" Width="302">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10,10,40,10" Text="CP :"/>
+                <TextBlock Margin="98,10,10,10" Text="{Binding CpLiv,Mode=OneWay}" Visibility="{Binding ViewMode}" Grid.ColumnSpan="2"/>
+                <TextBox Margin="98,10,10,10" Visibility="{Binding EditMode}" Grid.ColumnSpan="2">
+                    <TextBox.Text>
+                        <Binding Path="CpLiv" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+            </Grid>
+            <Grid Margin="0,185,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Height="40" Width="302">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="133*"/>
+                    <ColumnDefinition Width="169*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10,10,40,10" Text="Ville :"/>
+                <TextBlock Margin="98,10,10,10" Text="{Binding VilleLiv,Mode=OneWay}" Visibility="{Binding ViewMode}" Grid.ColumnSpan="2"/>
+                <TextBox Margin="98,10,10,10" Visibility="{Binding EditMode}" Grid.ColumnSpan="2">
+                    <TextBox.Text>
+                        <Binding Path="VilleLiv" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+            </Grid>
+            <Grid Margin="0,225,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Height="40" Width="302">
+                <TextBlock Margin="10,10,40,10" Text="Adresse Facturation"/>
+            </Grid>
+            <Grid Margin="0,265,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Height="40" Width="302">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="133*"/>
+                    <ColumnDefinition Width="169*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10,10,40,10" Text="Rue :"/>
+                <TextBlock Margin="98,10,10,10" Text="{Binding RueFac,Mode=OneWay}" Visibility="{Binding ViewMode}" Grid.ColumnSpan="2"/>
+                <TextBox Margin="98,10,10,10" Visibility="{Binding EditMode}" Grid.ColumnSpan="2">
+                    <TextBox.Text>
+                        <Binding Path="RueFac" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+            </Grid>
+            <Grid Margin="0,305,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Height="40" Width="302">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="133*"/>
+                    <ColumnDefinition Width="169*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10,10,40,10" Text="Numéro :"/>
+                <TextBlock Margin="98,10,10,10" Text="{Binding NumeroFac,Mode=OneWay}" Visibility="{Binding ViewMode}" Grid.ColumnSpan="2"/>
+                <TextBox Margin="98,10,10,10" Visibility="{Binding EditMode}" Grid.ColumnSpan="2">
+                    <TextBox.Text>
+                        <Binding Path="NumeroFac" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+            </Grid>
+            <Grid Margin="0,345,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Height="40" Width="302">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10,10,40,10" Text="CP :"/>
+                <TextBlock Margin="98,10,10,10" Text="{Binding CpFac,Mode=OneWay}" Visibility="{Binding ViewMode}" Grid.ColumnSpan="2"/>
+                <TextBox Margin="98,10,10,10" Visibility="{Binding EditMode}" Grid.ColumnSpan="2">
+                    <TextBox.Text>
+                        <Binding Path="CpFac" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+            </Grid>
+            <Grid Margin="0,385,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Height="40" Width="302">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="133*"/>
+                    <ColumnDefinition Width="169*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10,10,40,10" Text="Ville :"/>
+                <TextBlock Margin="98,10,10,10" Text="{Binding VilleFac,Mode=OneWay}" Visibility="{Binding ViewMode}" Grid.ColumnSpan="2"/>
+                <TextBox Margin="98,10,10,10" Visibility="{Binding EditMode}" Grid.ColumnSpan="2">
+                    <TextBox.Text>
+                        <Binding Path="VilleFac" UpdateSourceTrigger="PropertyChanged"/>
+                    </TextBox.Text>
+                </TextBox>
+            </Grid>
+            <Grid Margin="307,25,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top" Height="40" Width="302">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="133*"/>
+                    <ColumnDefinition Width="169*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10,10,40,10" Text="Utilisateur :"/>
+                <TextBlock Margin="98,10,10,10" Text="{Binding NomPrenom,Mode=OneWay}" Grid.ColumnSpan="2"/>
+            </Grid>
+            <Grid Margin="307,65,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" Height="40" Width="302">
+                <TextBlock Margin="10,10,209,10" Text="Statut :"/>
+                <TextBlock Margin="98,10,10,10" Text="{Binding IntituleStatutCmd, Mode=OneWay}" Visibility="{Binding ViewMode}"/>
+                <ComboBox Height="23"
+                  Name="StatutCmdSelection"
+                  Width="120"
+                  Margin="172,7,0,0"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Top"
+                  DisplayMemberPath="intitule"                          
+                  ItemsSource="{Binding DataViewStatutCmd}"
+                  SelectedItem="{Binding SelectionStatutCmd}"
+                  Visibility="{Binding EditMode}"/>
+            </Grid>
+            <DataGrid 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Height="200"
+                Width="340"
+                AutoGenerateColumns="False"
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                ItemsSource="{Binding ProduitsCommands}" Margin="302,145,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Produits" Binding="{Binding Key, Mode=OneWay}" Width="*"/>
+                    <DataGridTextColumn Header="Quantité" Binding="{Binding Value, Mode=OneWay}" IsReadOnly="False" Width="0.2*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="FermerFenetre" Style="{StaticResource BoutonAnnuler}"
+                HorizontalAlignment="Right" Margin="0,0,10,10"
+                VerticalAlignment="Bottom" Width="75" Click="FermerFenetre_Click" Height="41">
+                <TextBlock Text="Fermer" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+            <Button x:Name="ValideerModificationCommande" Style="{StaticResource BoutonOk}"
+                Visibility="{Binding EditMode}"
+                HorizontalAlignment="Right" Margin="0,0,90,10"
+                VerticalAlignment="Bottom" Width="75" Click="ValideerModificationCommande_Click" Height="41">
+                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Text="Valider"/>
+            </Button>
+            <Grid Margin="302,105,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top" Height="40" Width="302">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="133*"/>
+                    <ColumnDefinition Width="169*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Margin="10,10,40,10" Text="Prix Total :"/>
+                <TextBlock Margin="98,10,10,10" Text="{Binding PrixTotalCmd, Mode=OneWay}" Grid.ColumnSpan="2"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Page>

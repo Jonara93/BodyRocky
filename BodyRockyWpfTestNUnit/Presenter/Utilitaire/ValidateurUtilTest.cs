@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using BodyRockyWPF.Model.metier;
 using BodyRockyWPF.Model.model;
 using BodyRockyWPF.Presenter.Utilitaire;
 using NUnit.Framework;
@@ -127,6 +128,95 @@ namespace BodyRockyWpfTestNUnit.Presenter.Utilitaire
 
 
             Assert.True(ValidateurUtil.IsListNullOrEmpty(listTp));
+        }
+        
+        [Test]
+        public void TestIsProduitIntituleUnique_NomUnique()
+        {
+            List<Produit> listProduits = new List<Produit>(new[] { new Produit("Karate"), new Produit("Cyclisme") });
+            Produit produit = new Produit("Woaw");
+
+            Assert.True(ValidateurUtil.IsProduitIntituleUnique(listProduits,produit));
+        }
+
+        [Test]
+        public void TestIsProduitIntituleUnique_NomPasUnique()
+        {
+            List<Produit> listProduits = new List<Produit>(new[] { new Produit("Karate"), new Produit("Cyclisme") });
+            Produit produit = new Produit("Karate");
+
+            Assert.False(ValidateurUtil.IsProduitIntituleUnique(listProduits, produit));
+        }
+
+        [Test]
+        public void TestIsProduitValide_ProduitNull()
+        {
+            Produit produit = null;
+
+            Assert.False(ValidateurUtil.IsProduitValide(produit));
+        }
+
+        [Test]
+        public void TestIsProduitValide_ProduitIntituleNull()
+        {
+            Produit produit = new Produit(null,"Une grande description",null,15,true,new TypeProduit("Intitule"),0);
+
+            Assert.False(ValidateurUtil.IsProduitValide(produit));
+        }
+
+        [Test]
+        public void TestIsProduitValide_ProduitIntituleLT3()
+        {
+            Produit produit = new Produit("Je", "Une grande description", null, 15, true, new TypeProduit("Intitule"),0);
+
+            Assert.False(ValidateurUtil.IsProduitValide(produit));
+        }
+
+        [Test]
+        public void TestIsProduitValide_ProduitPrixLT0()
+        {
+            Produit produit = new Produit("JeuDeMain", "Une grande description", null, -1, true, new TypeProduit("Intitule"),0);
+
+            Assert.False(ValidateurUtil.IsProduitValide(produit));
+        }
+        [Test]
+        public void TestIsProduitValide_ProduitDescriptionNull()
+        {
+            Produit produit = new Produit("JeuDeMain", null, null, 1, true, new TypeProduit("Intitule"),0);
+
+            Assert.False(ValidateurUtil.IsProduitValide(produit));
+        }
+
+        [Test]
+        public void TestIsProduitValide_ProduitDescriptionLT10()
+        {
+            Produit produit = new Produit("JeuDeMain", "Jeu", null, 1, true, new TypeProduit("Intitule"),0);
+
+            Assert.False(ValidateurUtil.IsProduitValide(produit));
+        }
+
+        [Test]
+        public void TestIsProduitValide_TypeProduitNull()
+        {
+            Produit produit = new Produit("JeuDeMain", "Jeu avec lequel on utilise ses petites mains", null, 1, true, null,0);
+
+            Assert.False(ValidateurUtil.IsProduitValide(produit));
+        }
+
+        [Test]
+        public void TestIsProduitValide_QuantiteNegative()
+        {
+            Produit produit = new Produit("JeuDeMain", "Jeu avec lequel on utilise ses petites mains", null, 1, true, new TypeProduit("Intitule"), -15);
+
+            Assert.False(ValidateurUtil.IsProduitValide(produit));
+        }
+
+        [Test]
+        public void TestIsProduitValide_ProduitValid()
+        {
+            Produit produit = new Produit("JeuDeMain", "Jeu avec lequel on utilise ses petites mains", null, 1, true, new TypeProduit("Intitule"),0);
+
+            Assert.True(ValidateurUtil.IsProduitValide(produit));
         }
     }
 }

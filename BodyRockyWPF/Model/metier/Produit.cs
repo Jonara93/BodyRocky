@@ -10,26 +10,39 @@ namespace BodyRockyWPF.Model.metier
 {
     public class Produit
     {
-        public int IdProduit { get; set; }
+        public Int32 IdProduit { get; set; }
         public String Intitule { get; set; }
         public String Description { get; set; }
         public byte[] Photo { get; set; }
         public Decimal Prix { get; set; }
         public bool Actif { get; set; }
+        public Int32 Quantite { get; set; }
         public TypeProduit TypeProduit { get; set; }
 
         public Produit() { }
-        public Produit(String intitule, String description, byte[] photo, Decimal prix, bool actif, TypeProduit TypeProduit)
+
+        public Produit(String intitule)
         {
             this.Intitule = intitule;
+        }
+
+        public Produit(int id, String intitule, String description, Decimal prix) : this(intitule)
+        {
+            this.IdProduit = id;
+            this.Description = description;
+            this.Prix = prix;
+        }
+        public Produit(String intitule, String description, byte[] photo, Decimal prix, bool actif, TypeProduit TypeProduit, int quantite) : this(intitule)
+        {
             this.Description = description;
             this.Photo = photo;
             this.Prix = prix;
             this.Actif = actif;
             this.TypeProduit = TypeProduit;
+            this.Quantite = quantite;
         }
-        public Produit(int IdProduit, String intitule, String description, byte[] photo, Decimal prix, bool actif, TypeProduit TypeProduit)
-            : this(intitule, description, photo, prix, actif, TypeProduit)
+        public Produit(Int32 IdProduit, String intitule, String description, byte[] photo, Decimal prix, bool actif, TypeProduit TypeProduit, int quantite)
+            : this(intitule, description, photo, prix, actif, TypeProduit, quantite)
         {
             this.IdProduit = IdProduit;
         }
@@ -40,6 +53,7 @@ namespace BodyRockyWPF.Model.metier
             this.Photo = produit.Photo;
             this.Prix = produit.Prix;
             this.Actif = produit.Actif;
+            this.Quantite = produit.Quantite;
             this.TypeProduit = new TypeProduit(produit.TypeProduit);
         }
 
