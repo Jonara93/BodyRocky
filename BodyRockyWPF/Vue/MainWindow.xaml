@@ -11,6 +11,7 @@
         <Menu HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="1254" Margin="10,10,0,0">
             <MenuItem Header="Type Produit"  Click="Liste_TypeProduits"/>
             <MenuItem Header="Produit"  Click="Liste_Produits"/>
+            <MenuItem Header="Commande"  Click="Liste_Commande"/>
         </Menu>
         <Frame x:Name="Main" Margin="10,35,10,10" NavigationUIVisibility="Hidden"/>
     </Grid>

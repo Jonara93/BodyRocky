@@ -1,4 +1,5 @@
 ﻿using BodyRockyWPF.Model.DAO;
+using BodyRockyWPF.Vue.CommandVue;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,18 @@ namespace BodyRockyWPF.Vue
             catch (Exception)
             {
                 MessageBox.Show("Une erreur est survenue durant l'ouverture du composant \"Produit\"");
+            }
+        }
+
+        private void Liste_Commande(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Main.Content = new CommandeVue();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Une erreur est survenue durant l'ouverture du composant \"Commande\"");
             }
         }
     }

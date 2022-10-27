@@ -41,7 +41,6 @@ namespace BodyRockyWPF.Presenter
                 {
                     TitrePage = "Détails du Produit : " + produit.Intitule;
                 }
-
             }
             else if (produit == null)
             {

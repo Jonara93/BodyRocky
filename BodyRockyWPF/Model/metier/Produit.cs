@@ -25,6 +25,13 @@ namespace BodyRockyWPF.Model.metier
         {
             this.Intitule = intitule;
         }
+
+        public Produit(int id, String intitule, String description, Decimal prix) : this(intitule)
+        {
+            this.IdProduit = id;
+            this.Description = description;
+            this.Prix = prix;
+        }
         public Produit(String intitule, String description, byte[] photo, Decimal prix, bool actif, TypeProduit TypeProduit, int quantite) : this(intitule)
         {
             this.Description = description;
