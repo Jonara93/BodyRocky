@@ -53,14 +53,14 @@ namespace BodyRockyWPF.Model.DAO
                                     Convert.ToString(reader["intitule"])
                                     ),
                                 new Utilisateur(
-                                    Convert.ToInt32(reader["statut_id"]),
-                                    Convert.ToString(reader["nom"]),
-                                    Convert.ToString(reader["prenom"]),
-                                    Convert.ToDateTime(reader["ddn"]),
+                                    Convert.ToInt32(reader["id_u"]),
+                                    reader["nom"] is DBNull ? null : Convert.ToString(reader["nom"]),
+                                    reader["prenom"] is DBNull ? null : Convert.ToString(reader["prenom"]),
+                                    reader["ddn"] is DBNull ? DateTime.Today : Convert.ToDateTime(reader["ddn"]),
                                     Convert.ToString(reader["email"]),
                                     null,
                                     Convert.ToBoolean(reader["actif"]),
-                                    null
+                                    new List<Adresse>()
                                     ),
                                 new Dictionary<Produit, int>()
                                 )
