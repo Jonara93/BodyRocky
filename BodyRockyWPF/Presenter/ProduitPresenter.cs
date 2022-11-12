@@ -125,7 +125,10 @@ namespace BodyRockyWPF.Presenter
         {
             if (Convert.ToInt32(drvTypeProduit["id"]).Equals(0))
             {
-                CollectionProduit = new ObservableCollection<Produit>(ListeProduit);
+                if (ValidateurUtil.IsListNotNullAndNotEmpty(ListeProduit))
+                {
+                    CollectionProduit = new ObservableCollection<Produit>(ListeProduit);
+                }
             }
             else
             {

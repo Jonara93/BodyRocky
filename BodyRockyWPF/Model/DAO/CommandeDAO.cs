@@ -70,8 +70,10 @@ namespace BodyRockyWPF.Model.DAO
 
                 reader.Close();
 
-
-                listeCommande.ForEach(c => ChercherProduit(c));
+                if (listeCommande != null && listeCommande.Count > 0)
+                {
+                    listeCommande.ForEach(c => ChercherProduit(c));
+                }
 
             }
             catch (Exception e)

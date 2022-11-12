@@ -207,7 +207,8 @@ namespace BodyRockyWPF.Presenter
             {
                 throw new ExceptionMetier("Le produit n'est pas valide");
             }
-            if (Produit.IdProduit.Equals(0) && !ValidateurUtil.IsProduitIntituleUnique(listProduitExistant, Produit))
+            if (ValidateurUtil.IsListNotNullAndNotEmpty(listProduitExistant) &&
+                Produit.IdProduit.Equals(0) && !ValidateurUtil.IsProduitIntituleUnique(listProduitExistant, Produit))
             {
                 throw new ExceptionMetier("Un produit est déjà existant avec cet intitule");
             }
